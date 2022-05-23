@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 pub mod server_mod {
 
 	use std::thread;
@@ -9,6 +11,8 @@ pub mod server_mod {
 		while match stream.read(&mut data) {
 			Ok(size) => {
 				// echo everything!
+				println!("{}", String::from_utf8_lossy(&data));
+
 				stream.write(&data[0..size]).unwrap();
 				true
 			},
